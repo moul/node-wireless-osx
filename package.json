@@ -1,0 +1,29 @@
+{
+  "name": "wireless-osx",
+  "version": "0.0.1",
+  "description": "OSX wireless tools wrapper in Node.js. list, view, connect, events",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/moul/node-wireless-osx.git"
+  },
+  "dependencies": {
+    "plist": "0.4"
+  },
+  "keywords": [
+    "osx",
+    "macosx",
+    "wireless",
+    "utilities",
+    "network"
+  ],
+  "author": "Manfred Touron <m@42.am>",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}

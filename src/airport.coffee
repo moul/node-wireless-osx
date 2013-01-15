@@ -4,7 +4,9 @@ plist =          require 'plist'
 
 class Airport extends EventEmitter
   constructor: (@options = {}) ->
+    @options = iface: @options if 'string' is typeof @options
     @options.airport_bin ?= '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+    @options.iface ?=       'en0'
 
   _exec: (args, fn) =>
     args = [args] if 'string' is typeof args

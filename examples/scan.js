@@ -4,7 +4,7 @@
 
   Airport = require('..').Airport;
 
-  airport = new Airport('en0');
+  airport = new Airport;
 
   airport.scan(function(err, results) {
     console.log('scan is performed');

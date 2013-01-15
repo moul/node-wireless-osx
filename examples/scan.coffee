@@ -2,7 +2,7 @@
 
 {Airport} = require '..'
 
-airport = new Airport 'en0'
+airport = new Airport
 
 airport.scan (err, results) ->
   console.log 'scan is performed'

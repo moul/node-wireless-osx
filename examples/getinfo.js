@@ -4,7 +4,7 @@
 
   Airport = require('..').Airport;
 
-  airport = new Airport('en0');
+  airport = new Airport;
 
   airport.getinfo(function(err, info) {
     return console.log(err, info);

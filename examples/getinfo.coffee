@@ -2,7 +2,7 @@
 
 {Airport} = require '..'
 
-airport = new Airport 'en0'
+airport = new Airport
 
 airport.getinfo (err, info) ->
   console.log err, info

@@ -7,10 +7,12 @@ class Airport extends EventEmitter
     @options = iface: @options if 'string' is typeof @options
     @options.airport_bin ?= '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
     @options.iface ?=       'en0'
+    @options.verbose ?=     true
 
   _exec: (args, fn) =>
     args = [args] if 'string' is typeof args
     command = "#{@options.airport_bin} #{args.join ' '}"
+    console.info command if true
     exec command, fn
 
   _parse: (buffer, fn) =>
@@ -42,6 +44,18 @@ class Airport extends EventEmitter
 
   help: (fn) =>
     @_exec '--help', fn
+
+  prefs: (name, value = null, fn = null) =>
+    if 'function' is typeof name
+      [name, value, fn] = [null, null, name]
+    else if 'function' is typeof value
+      [name, value, fn] = [name, null, value]
+    args = [@options.iface, 'prefs']
+    if value
+      args.push "#{name}=#{value}"
+    else if name
+      args.push "#{name}"
+    @_exec args, fn
 
 module.exports =
   Airport: Airport

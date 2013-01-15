@@ -9,6 +9,7 @@ class Airport extends EventEmitter
     @options.iface ?=       'en0'
 
   _exec: (args, fn) =>
+    args = [args] if 'string' is typeof args
     command = "#{@options.airport_bin} #{args.join ' '}"
     exec command, fn
 
@@ -20,6 +21,7 @@ class Airport extends EventEmitter
 
   _execAndParse: (args, fn) =>
     @_exec args, (err, stdout, stderr) =>
+      return fn err, {stdout: stdout, stderr: stderr} if err
       @_parse stdout, fn
 
   scan: (arg = '', fn = null) =>
@@ -31,9 +33,16 @@ class Airport extends EventEmitter
   getinfo: (fn) =>
     @_execAndParse ["--getinfo", "--xml"], fn
 
+  disassociate: (fn) =>
+    @_exec '--disassociate'
+
   # channel
   # disassociate
-  # psd
+  # psk
+
+  help: (fn) =>
+    @_exec '--help', fn
 
 module.exports =
   Airport: Airport
+

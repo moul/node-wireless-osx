@@ -60,8 +60,13 @@ class Airport extends EventEmitter
       args.push "#{name}"
     @_exec args, fn
 
-  sniff: =>
-    @_system [@options.iface, 'sniff']
+  sniff: (channel = null) =>
+    args = [@options.iface, 'sniff']
+    args.push channel if channel
+    @_system args
+
+  logger: =>
+    @_system [@options.iface, 'logger']
 
 module.exports =
   Airport: Airport

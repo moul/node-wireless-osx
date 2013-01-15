@@ -1,6 +1,6 @@
 {
   "name": "wireless-osx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OSX wireless tools wrapper in Node.js. list, view, connect, events",
   "main": "index.js",
   "directories": {

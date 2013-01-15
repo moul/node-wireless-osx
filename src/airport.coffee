@@ -7,12 +7,15 @@ class Airport extends EventEmitter
     @options = iface: @options if 'string' is typeof @options
     @options.airport_bin ?= '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
     @options.iface ?=       'en0'
-    @options.verbose ?=     true
+    @options.verbose ?=     false
+
+  _system: (args) =>
+    spawn @options.airport_bin, args, stdio: "inherit"
 
   _exec: (args, fn) =>
     args = [args] if 'string' is typeof args
     command = "#{@options.airport_bin} #{args.join ' '}"
-    console.info command if true
+    console.info command if @options.verbose
     exec command, fn
 
   _parse: (buffer, fn) =>
@@ -56,6 +59,9 @@ class Airport extends EventEmitter
     else if name
       args.push "#{name}"
     @_exec args, fn
+
+  sniff: =>
+    @_system [@options.iface, 'sniff']
 
 module.exports =
   Airport: Airport
